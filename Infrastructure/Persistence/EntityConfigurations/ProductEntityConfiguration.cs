@@ -12,9 +12,9 @@ namespace Persistence.EntityConfigurations
 
             builder.HasKey(b => b.Id);
 
-            builder.Property(i => i.Id).ValueGeneratedOnAdd().HasDefaultValueSql("newid()").IsRequired();
+            builder.Property(i => i.Id).ValueGeneratedOnAdd().HasDefaultValueSql("newid()");
 
-            builder.Property(i => i.Name).HasColumnName("Name").HasColumnType("varchar").HasMaxLength(50).IsRequired();
+            builder.Property(i => i.Name).HasColumnName("Name").HasColumnType("varchar").HasMaxLength(50);
 
             builder.Property(i => i.Description).HasColumnName("Description").HasColumnType("varchar").HasMaxLength(250);
 
@@ -25,9 +25,9 @@ namespace Persistence.EntityConfigurations
             builder.Property(i => i.Unit).HasColumnName("Unit").HasColumnType("varchar").HasMaxLength(10).IsRequired();
 
             builder.Property(i => i.CreatedAt).HasColumnName("CreatedAt").HasColumnType("datetime")
-                .HasDefaultValueSql("getdate()").IsRequired();
+                .HasDefaultValueSql("getdate()");
 
-            builder.Property(i => i.UpdatedAt).HasColumnName("UpdatedAt").HasColumnType("datetime").ValueGeneratedOnUpdate().HasDefaultValueSql("getdate()").IsRequired();
+            builder.Property(i => i.UpdatedAt).HasColumnName("UpdatedAt").HasColumnType("datetime").ValueGeneratedOnAddOrUpdate().HasDefaultValueSql("getdate()");
 
             builder.Property(i => i.IsDeleted).HasColumnName("IsDeleted").HasDefaultValue(false).IsRequired();
 

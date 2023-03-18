@@ -21,7 +21,7 @@ namespace Persistence.EntityConfigurations
             builder.Property(i => i.CreatedAt).HasColumnName("CreatedAt").HasColumnType("datetime").ValueGeneratedOnAdd()
                .HasDefaultValueSql("getdate()");
 
-            builder.Property(i => i.UpdatedAt).HasColumnName("UpdatedAt").HasColumnType("datetime").ValueGeneratedOnUpdate().HasDefaultValueSql("getdate()");
+            builder.Property(i => i.UpdatedAt).HasColumnName("UpdatedAt").HasColumnType("datetime").ValueGeneratedOnAddOrUpdate().HasDefaultValueSql("getdate()");
 
             builder.Property(i => i.IsDeleted).HasColumnName("IsDeleted").HasDefaultValue(false);
         }

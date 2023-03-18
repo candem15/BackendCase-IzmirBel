@@ -32,7 +32,7 @@ namespace Persistence.Services
 
         public async Task<ProductDto> GetByIdAsync(Guid id)
         {
-            var product = await dbContext.Products.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            var product = await dbContext.Products.AsNoTracking().Include(x => x.Category).SingleOrDefaultAsync(x => x.Id == id);
 
             if (product == null)
                 throw new Exception("Product not exists!");
@@ -68,7 +68,12 @@ namespace Persistence.Services
             if (productToUpdate == null)
                 throw new Exception("Product to update not exists!");
 
-            productToUpdate = mapper.Map<Product>(updateResource);
+            productToUpdate.UpdatedAt = DateTime.Now;
+            productToUpdate.Description = updateResource.Description;
+            productToUpdate.Price = updateResource.Price;
+            productToUpdate.Unit = updateResource.Unit;
+            productToUpdate.Quantity = updateResource.Quantity;
+            productToUpdate.Name = updateResource.Name;
 
             dbContext.Products.Update(productToUpdate);
 

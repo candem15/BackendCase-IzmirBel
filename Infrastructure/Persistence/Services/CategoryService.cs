@@ -67,7 +67,9 @@ namespace Persistence.Services
             if (categoryToUpdate == null)
                 throw new Exception("Category to update not exists!");
 
-            categoryToUpdate = mapper.Map<Category>(updateResource);
+            categoryToUpdate.UpdatedAt = DateTime.Now;
+            categoryToUpdate.Name = updateResource.Name;
+            categoryToUpdate.Description = updateResource.Description;
 
             dbContext.Categories.Update(categoryToUpdate);
 

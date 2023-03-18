@@ -18,17 +18,21 @@ namespace Application.Mappings
         {
 
             CreateMap<CategoryDto, CreateCategoryCommandRequest>().ReverseMap();
+            CreateMap<CreateProductDto, CreateProductCommandRequest>().ReverseMap();
+            CreateMap<UpdateProductDto, UpdateProductCommandRequest>().ReverseMap();
 
             CreateMap<CategoryDto, GetCategoryByIdQueryResponse>();
             CreateMap<ProductDto, GetProductByIdQueryResponse>();
             CreateMap<UpdateProductDto, UpdateProductCommandResponse>();
             CreateMap<CreateProductDto, CreateProductCommandResponse>();
 
-            CreateMap<CategoryDto, Category>().ReverseMap();
+            CreateMap<CategoryDto, Category>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore())
+                .ReverseMap();
             CreateMap<ProductDto, Product>().ReverseMap();
             CreateMap<UpdateProductDto, Product>().ReverseMap();
-            CreateMap<CreateProductDto, Product>().ReverseMap()
-                  .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId));
+            CreateMap<CreateProductDto, Product>().ReverseMap();
 
             //Token mapping
             CreateMap<TokenDto, GetTokenCommandResponse>();

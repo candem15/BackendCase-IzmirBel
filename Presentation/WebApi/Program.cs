@@ -38,6 +38,7 @@ if (app.Environment.IsDevelopment())
 //Global Exception handler.
 app.ConfigureExceptionHandler();
 
+
 app.UseHttpsRedirection();
 
 // auth jtw

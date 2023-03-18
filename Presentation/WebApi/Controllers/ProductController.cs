@@ -33,7 +33,7 @@ namespace WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetById/{Id:int}")]
+        [HttpGet("GetById/{Id}")]
         [ProducesResponseType(typeof(ProductDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetByIdAsync([FromRoute] GetProductByIdQueryRequest request)
@@ -64,7 +64,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpDelete("Delete/{Id:int}")]
+        [HttpDelete("Delete/{Id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(BadRequestObjectResult), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> DeleteAsync([FromRoute] SoftDeleteProductCommandRequest request)
